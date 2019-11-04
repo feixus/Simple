@@ -1,0 +1,32 @@
+
+function Start()
+    Register()
+end
+
+function Register()
+    btn_1.onClick:AddListener(OnClick_1)
+    btn_2.onClick:AddListener(OnClick_2)
+    btn_3.onClick:AddListener(OnClick_3)
+    btn_4.onClick:AddListener(OnClick_4)
+    btn_5.onClick:AddListener(OnClick_5)
+end
+
+function OnClick_1()
+    txt_content.text = txt_1.text
+end
+
+function OnClick_2()
+    txt_content.text = txt_2.text
+end
+
+function OnClick_3()
+    txt_content.text = txt_3.text
+end
+
+function OnClick_4()
+    txt_content.text = txt_4.text
+end
+
+function OnClick_5()
+    txt_content.text = txt_5.text
+end

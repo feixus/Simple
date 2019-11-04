@@ -1,0 +1,9 @@
+SceneMgr = SceneMgr or {}
+
+SceneMgr.OpenUI = function(data)
+    print("*****") 
+end
+
+SceneMgr.CloseUI = function(ui_name)
+
+end

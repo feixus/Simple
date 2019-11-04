@@ -1,0 +1,9 @@
+require("mgr.scenemgr")
+require("mgr.uimgr")
+
+
+function Test()
+    UIMgr.OpenUI({ui_name = "assets/prefabs/ui/mainscreen.prefab"})
+end
+
+Test()

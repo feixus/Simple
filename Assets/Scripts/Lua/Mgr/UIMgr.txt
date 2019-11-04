@@ -1,0 +1,15 @@
+UIMgr = UIMgr or {}
+
+local _LoadPrefab = CS.ResourceManager.LoadPrefab
+
+--[[
+    ui_name -- prefab name
+]]
+UIMgr.OpenUI = function(data)
+    print("ui_name = " .. data.ui_name) 
+    _LoadPrefab(data.ui_name)
+end
+
+UIMgr.CloseUI = function(ui_name)
+
+end
