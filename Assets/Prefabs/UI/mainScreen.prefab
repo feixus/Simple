@@ -174,7 +174,7 @@ Canvas:
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
+  m_OverridePixelPerfect: 1
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
@@ -212,8 +212,6 @@ MonoBehaviour:
   m_LuaFile: {fileID: 4900000, guid: dd42e6e328817b347995bcb9b0a69a10, type: 3}
   m_UpdateOrder: 0
   m_BindVariables:
-  - Name: Bottom
-    Value: {fileID: 2765074292176545156}
   - Name: btn_1
     Value: {fileID: 93738205725811377}
   - Name: btn_2

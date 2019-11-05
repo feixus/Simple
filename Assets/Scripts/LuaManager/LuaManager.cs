@@ -9,14 +9,6 @@ using UnityEditor;
 
 namespace XLua
 {
-    public partial class LuaEnv
-    {
-        public void Clear()
-        {
-            translator.ClearDelegateBriages();
-        }
-    }
-
     public partial class ObjectTranslator
     {
         public void ClearDelegateBriages()
@@ -24,10 +16,26 @@ namespace XLua
             delegate_bridges.Clear();
         }
     }
+
+    public class LuaEnvEx : LuaEnv
+    {
+        public void ForceDispose()
+        {
+            FullGc();
+            System.GC.Collect();
+            System.GC.WaitForPendingFinalizers();
+
+            translator.ClearDelegateBriages();
+            Dispose(true);
+
+            System.GC.Collect();
+            System.GC.WaitForPendingFinalizers();
+        }
+    }
 }
 
 
-
+[DefaultExecutionOrder(-1000)]
 public class LuaManager : MonoBehaviour
 {
     private static LuaManager s_Instance = null;
@@ -36,7 +44,7 @@ public class LuaManager : MonoBehaviour
         get { return s_Instance; }
     }
 
-    private LuaEnv m_LuaEnv;
+    private LuaEnvEx m_LuaEnv;
     public LuaTable Global { get {return m_LuaEnv == null ? null : m_LuaEnv.Global;}}
 
     void Awake()
@@ -46,7 +54,7 @@ public class LuaManager : MonoBehaviour
 
     void Start()
     {
-        m_LuaEnv = new LuaEnv();
+        m_LuaEnv = new LuaEnvEx();
 
         m_LuaEnv.AddLoader(CustomLoader);
     }
@@ -57,14 +65,15 @@ public class LuaManager : MonoBehaviour
             m_LuaEnv.Tick();
     }
 
+    //为了让LuaManager的OnDestroy最后执行，设置了DefaultExecutionOrder(-10000)
+    //但若LuaBehavior与LuaManager不同属于DontDestroyOnLoad时会无视此设置(可能是执行顺序的无序性吧？？？)
     void OnDestroy()
     {
+        Debug.Log("LuaManager  OnDestroy");
         if (m_LuaEnv != null)
         {
-            m_LuaEnv.Clear();
-            m_LuaEnv.Dispose();
-        }
-            
+            m_LuaEnv.ForceDispose();
+        }  
         m_LuaEnv = null;
     }
 

@@ -38,7 +38,7 @@ public class LuaBehavior : MonoBehaviour
         if (m_LuaFile != null && !string.IsNullOrEmpty(m_LuaFile.text))
         {
             m_ScriptTable = LuaManager.Instance.NewTable();
-            
+
             LuaManager.Instance.DoFile(m_LuaFile.name, m_LuaFile.text, m_ScriptTable);
 
             // m_ScriptTable.Set("this", this);
@@ -88,7 +88,7 @@ public class LuaBehavior : MonoBehaviour
     void OnDestroy()
     {
         lua_OnDestroy?.Invoke();
-
+        Debug.Log("LuaBehavior  OnDestroy");
         if (m_ScriptTable != null)
             m_ScriptTable.Dispose();
         m_ScriptTable = null;

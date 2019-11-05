@@ -6,6 +6,10 @@ public class StartUp : MonoBehaviour
 {
     void Start()
     {
+        var sceneRoot = ResourceManager.LoadPrefab("assets/prefabs/ui/sceneroot.prefab");
+        sceneRoot.name = "SceneRoot";
+        DontDestroyOnLoad(sceneRoot);
+
         GameObject newObj = new GameObject("ResourceManager");
         newObj.AddComponent<ResourceManager>();
         DontDestroyOnLoad(newObj);
@@ -25,8 +29,4 @@ public class StartUp : MonoBehaviour
         LuaManager.Instance.DoFile("init", "require \"init\"", null);
     }
 
-    void Update()
-    {
-
-    }
 }

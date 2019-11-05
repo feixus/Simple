@@ -1,0 +1,10 @@
+GameConst = GameConst or {}
+
+GameConst.SceneRootName = "SceneRoot"
+
+GameConst.Path = 
+{
+    ui = "assets/prefabs/ui/",
+}
+
+

@@ -13,7 +13,7 @@ namespace Tests
         [Test]
         public void UserTestSimplePasses()
         {
-            Button dd;
+            GameObject sceneRoot = GameObject.Find("SceneRoot");
         }
 
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

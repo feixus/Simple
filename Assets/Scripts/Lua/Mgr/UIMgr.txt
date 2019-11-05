@@ -1,13 +1,30 @@
 UIMgr = UIMgr or {}
 
 local _LoadPrefab = CS.ResourceManager.LoadPrefab
+local _GameObject = CS.UnityEngine.GameObject
+
+local m_SceneRoot = nil
+
+local ORDER_PER_PREFAB_UI = 50
+
+local InitInfo = function()
+    if m_SceneRoot ~= nil then return end 
+
+    m_SceneRoot = _GameObject.Find(GameConst.SceneRootName)  -- 静态方法的调用使用 "."
+end
 
 --[[
     ui_name -- prefab name
 ]]
 UIMgr.OpenUI = function(data)
-    print("ui_name = " .. data.ui_name) 
-    _LoadPrefab(data.ui_name)
+    if data.ui_name == nil or data.ui_name == "" then return end 
+
+    InitInfo()
+    
+    local uiPath = string.format("%s%s.prefab", GameConst.Path.ui, data.ui_name)
+    local newObj = _LoadPrefab(uiPath)
+
+    newObj.transform:SetParent(m_SceneRoot.transform)  -- 成员方法的调用使用 ":"
 end
 
 UIMgr.CloseUI = function(ui_name)

@@ -1,9 +1,12 @@
+local breakSocketHandle,debugXpCall = require("LuaDebugjit")("localhost",7003)
+
 require("mgr.scenemgr")
 require("mgr.uimgr")
+require("gameconst")
 
 
 function Test()
-    UIMgr.OpenUI({ui_name = "assets/prefabs/ui/mainscreen.prefab"})
+    UIMgr.OpenUI({ui_name = "mainscreen"})
 end
 
 Test()
