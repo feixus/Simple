@@ -52,6 +52,8 @@
         "ProjectSettings/":true,
         "temp/":true,
         "Temp/":true,
-		"luaide.automaticDownloadingDebugFile": true
-    }
+    },
+	"luaide.automaticDownloadingDebugFile": false
+	"files.encoding": "utf8"
+	
 }

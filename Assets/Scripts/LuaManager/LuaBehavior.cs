@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -88,9 +88,11 @@ public class LuaBehavior : MonoBehaviour
     void OnDestroy()
     {
         lua_OnDestroy?.Invoke();
-        Debug.Log("LuaBehavior  OnDestroy");
-        if (m_ScriptTable != null)
-            m_ScriptTable.Dispose();
-        m_ScriptTable = null;
+        if (!LuaManager.Instance.IsLuaEnvNull())
+        {
+            if (m_ScriptTable != null)
+                m_ScriptTable.Dispose();
+            m_ScriptTable = null;
+        }
     }
 }

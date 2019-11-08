@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -65,11 +65,8 @@ public class LuaManager : MonoBehaviour
             m_LuaEnv.Tick();
     }
 
-    //为了让LuaManager的OnDestroy最后执行，设置了DefaultExecutionOrder(-10000)
-    //但若LuaBehavior与LuaManager不同属于DontDestroyOnLoad时会无视此设置(可能是执行顺序的无序性吧？？？)
     void OnDestroy()
     {
-        Debug.Log("LuaManager  OnDestroy");
         if (m_LuaEnv != null)
         {
             m_LuaEnv.ForceDispose();
@@ -104,6 +101,11 @@ public class LuaManager : MonoBehaviour
     public void DoFile(string fileName, string luaFile, LuaTable table)
     {
         m_LuaEnv.DoString(luaFile, fileName, table);
+    }
+
+    public bool IsLuaEnvNull()
+    {
+        return m_LuaEnv == null;
     }
 
 }
