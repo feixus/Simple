@@ -1,0 +1,9 @@
+local classC = class("classC", require("game.classB"))
+
+function classC:ctor(args) 
+    classC.super.ctor(self, args)
+    print("class C ctor")
+end
+
+
+return classC

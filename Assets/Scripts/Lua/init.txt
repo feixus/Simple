@@ -1,4 +1,8 @@
-local breakSocketHandle,debugXpCall = require("LuaDebugjit")("localhost",7003)
+print(_VERSION)
+
+local breakSocketHandle,debugXpCall = require("Tools/LuaDebug")("localhost",7003)
+
+require("Utils.class")
 
 require("mgr.scenemgr")
 require("mgr.uimgr")
@@ -8,5 +12,11 @@ require("gameconst")
 function Test()
     UIMgr.OpenUI({ui_name = "mainscreen"})
 end
+
+local classC1 = require("game.classC").new()
+local classC2 = require("game.classC").new()
+classC1.a = "256"
+classC1:print("C1") 
+classC2:print("C2") 
 
 Test()

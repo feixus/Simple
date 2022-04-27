@@ -61,3 +61,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+[Aa]ssets/ThirdParty/XLua/Doc/
+[Aa]ssets/ThirdParty/XLua/Examples/
+[Aa]ssets/ThirdParty/XLua/Tutorial/
+

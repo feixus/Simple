@@ -1,0 +1,61 @@
+function deepcopy(obj, copies)
+    copies = copies or {}
+
+    local copy
+    if type(obj) == 'table' then 
+        if copies[obj] then 
+            copy = copies[obj] 
+        else 
+            copy = {} 
+            copies[obj] = copy 
+            for key, value in next, obj, nil do 
+                copy[deepcopy(key, copies)] = deepcopy(value, copies)
+            end 
+            setmetatable(copy, deepcopy(getmetatable(obj), copies))
+        end
+    else
+        copy = obj 
+    end
+
+    return copy
+end
+
+function clone(object) 
+    local lookup_table = {} 
+    local function _copy(object) 
+        if type(object) ~= 'table' then 
+            return object
+        elseif lookup_table[object] then 
+            return lookup_table[object]
+        end
+
+        local new_table = {} 
+        lookup_table[object] = new_table
+        for key, value in pairs(object) do 
+            new_table[_copy(key)] = _copy(value) 
+        end
+        return setmetatable(new_table, getmetatable(object))
+    end
+
+    return _copy(object)
+end
+
+function class(name, parent) 
+    local c = {}
+    c.name = name 
+
+    if parent ~= nil then 
+        c = deepcopy(parent) 
+        c.super = parent 
+    end
+
+    c.__index = c
+
+    c.new = function(...)
+        local instance = setmetatable({}, c) --置空表是为了防止一个类的多个实例化，其中一个实例化的对象数据变化会影响其他实例化的同一对象
+        instance:ctor(...)
+        return instance
+    end
+
+    return c
+end

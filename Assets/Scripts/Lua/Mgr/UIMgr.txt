@@ -21,7 +21,7 @@ UIMgr.OpenUI = function(data)
 
     InitInfo()
     
-    local uiPath = string.format("%s%s.prefab", GameConst.Path.ui, data.ui_name)
+    local uiPath = table.concat({GameConst.Path.ui, data.ui_name, ".prefab"})
     local newObj = _LoadPrefab(uiPath)
 
     newObj.transform:SetParent(m_SceneRoot.transform)  -- 成员方法的调用使用 ":"

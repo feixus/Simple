@@ -1,0 +1,12 @@
+local classA = class("classA")
+
+function classA:ctor(args) 
+    print("class A ctor")
+    self.a = "a"
+end
+
+function classA:print(msg)
+    print(msg .. " class A print  a = " .. self.a)
+end
+
+return classA
