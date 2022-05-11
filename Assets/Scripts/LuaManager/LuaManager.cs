@@ -45,7 +45,7 @@ public class LuaManager : MonoBehaviour
     }
 
     private LuaEnvEx m_LuaEnv;
-    public LuaTable Global { get {return m_LuaEnv == null ? null : m_LuaEnv.Global;}}
+    public LuaTable Global { get { return m_LuaEnv == null ? null : m_LuaEnv.Global; } }
 
     void Awake()
     {
@@ -70,7 +70,7 @@ public class LuaManager : MonoBehaviour
         if (m_LuaEnv != null)
         {
             m_LuaEnv.ForceDispose();
-        }  
+        }
         m_LuaEnv = null;
     }
 
@@ -106,6 +106,11 @@ public class LuaManager : MonoBehaviour
     public bool IsLuaEnvNull()
     {
         return m_LuaEnv == null;
+    }
+
+    public LuaEnvEx LuaEnv
+    {
+        get { return m_LuaEnv; }
     }
 
 }

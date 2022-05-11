@@ -472,6 +472,8 @@ namespace XLua
                 local fqn = rawget(self,'.fqn')
                 fqn = ((fqn and fqn .. '.') or '') .. key
 
+                print('fqn = ' .. fqn .. ',   key = ' .. key)
+                
                 local obj = import_type(fqn)
 
                 if obj == nil then

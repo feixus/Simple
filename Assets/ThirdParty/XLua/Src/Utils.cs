@@ -1076,6 +1076,9 @@ namespace XLua
 
 			translator.Push(L, type == null ? base_type : type.BaseType());
 
+			var dd = type == null ? base_type : type.BaseType();
+			UnityEngine.Debug.Log(dd.FullName + "  1080 " + LuaIndexes.LUA_REGISTRYINDEX);
+
 			LuaAPI.xlua_pushasciistring(L, LuaIndexsFieldName);
 			LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);
 			if (arrayIndexer == null)
@@ -1098,6 +1101,7 @@ namespace XLua
 				LuaAPI.xlua_pushasciistring(L, LuaIndexsFieldName);
 				LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);//store in lua indexs function tables
 				translator.Push(L, type);
+				UnityEngine.Debug.Log(type.FullName + "  1104");
 				LuaAPI.lua_pushvalue(L, -3);
 				LuaAPI.lua_rawset(L, -3);
 				LuaAPI.lua_pop(L, 1);
@@ -1124,6 +1128,8 @@ namespace XLua
 			}
 
 			translator.Push(L, type == null ? base_type : type.BaseType());
+			var tt = type == null ? base_type : type.BaseType();
+			UnityEngine.Debug.Log(tt.FullName + "  1132");
 
 			LuaAPI.xlua_pushasciistring(L, LuaNewIndexsFieldName);
 			LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);
@@ -1147,6 +1153,7 @@ namespace XLua
 			{
 				LuaAPI.xlua_pushasciistring(L, LuaNewIndexsFieldName);
 				LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);//store in lua newindexs function tables
+				UnityEngine.Debug.Log(type.FullName + "  1154");
 				translator.Push(L, type);
 				LuaAPI.lua_pushvalue(L, -3);
 				LuaAPI.lua_rawset(L, -3);

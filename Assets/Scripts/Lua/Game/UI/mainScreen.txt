@@ -1,6 +1,10 @@
 
 function Start()
     Register()
+
+    print("-----------------------------------------------------")
+    CS.UnityEngine.Debug.Log("ssss")
+    CS.UnityEngine.GameObject("MAIN TEST")
 end
 
 function Register()

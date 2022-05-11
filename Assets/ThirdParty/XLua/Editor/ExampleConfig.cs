@@ -17,7 +17,7 @@ public static class ExampleConfig
 {
     /***************如果你全lua编程，可以参考这份自动化配置***************/
     //--------------begin 纯lua编程配置参考----------------------------
-    //static List<string> exclude = new List<string> {
+    // static List<string> exclude = new List<string> {
     //    "HideInInspector", "ExecuteInEditMode",
     //    "AddComponentMenu", "ContextMenu",
     //    "RequireComponent", "DisallowMultipleComponent",
@@ -54,10 +54,10 @@ public static class ExampleConfig
     //    "ClusterInput", "Motion",
     //    "UnityEngine.UI.ReflectionMethodsCache", "NativeLeakDetection",
     //    "NativeLeakDetectionMode", "WWWAudioExtensions", "UnityEngine.Experimental",
-    //};
+    // };
 
-    //static bool isExcluded(Type type)
-    //{
+    // static bool isExcluded(Type type)
+    // {
     //    var fullName = type.FullName;
     //    for (int i = 0; i < exclude.Count; i++)
     //    {
@@ -67,11 +67,11 @@ public static class ExampleConfig
     //        }
     //    }
     //    return false;
-    //}
+    // }
 
-    //[LuaCallCSharp]
-    //public static IEnumerable<Type> LuaCallCSharp
-    //{
+    // [LuaCallCSharp]
+    // public static IEnumerable<Type> LuaCallCSharp
+    // {
     //    get
     //    {
     //        List<string> namespaces = new List<string>() // 在这里添加名字空间
@@ -96,7 +96,21 @@ public static class ExampleConfig
     //                           select type);
     //        return unityTypes.Concat(customTypes);
     //    }
-    //}
+    // }
+
+    [LuaCallCSharp]
+    public static List<Type> LuaCallCSharp = new List<Type>()
+    {
+        typeof(UnityEngine.Debug),
+        typeof(UnityEngine.GameObject),
+        // typeof(UnityEngine.UI.Button),
+    };
+
+    // [CSharpCallLua]
+    // public static List<Type> CSharpCallLua = new List<Type>()
+    // {
+    //     typeof(UnityEngine.Events.UnityAction),
+    // };
 
     ////自动把LuaCallCSharp涉及到的delegate加到CSharpCallLua列表，后续可以直接用lua函数做callback
     //[CSharpCallLua]

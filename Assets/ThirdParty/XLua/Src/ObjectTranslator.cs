@@ -146,6 +146,7 @@ namespace XLua
             if (delayWrap.TryGetValue(type, out loader))
             {
                 delayWrap.Remove(type);
+                UnityEngine.Debug.Log(type.FullName + "  TryDelayWrapLoader");
                 loader(L);
             }
             else
@@ -1285,7 +1286,14 @@ namespace XLua
             }
 
             index = addObject(o, is_valuetype, is_enum);
+            
             LuaAPI.xlua_pushcsobj(L, index, type_id, needcache, cacheRef);
+
+            // if (o.ToString().Contains("Debug"))
+            {
+                UnityEngine.Debug.LogWarning("index = " + index + " , meta_ref = " + type_id + " , lua ref = " + cacheRef + " ,name =" + o.ToString());
+            }
+
         }
 
         public void PushObject(RealStatePtr L, object o, int type_id)
